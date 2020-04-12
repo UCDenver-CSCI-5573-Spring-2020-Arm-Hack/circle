@@ -44,6 +44,7 @@ public:
 	void RegisterTaskTerminationHandler (TSchedulerTaskHandler *pHandler);
 
 	static CScheduler *Get (void);
+    void RemoveTask (CTask *pTask);
 
 	static boolean IsActive (void)
 	{
@@ -58,7 +59,6 @@ private:
 	void WakeTask (CTask **ppTask);		// can be called from interrupt context
 	friend class CSynchronizationEvent;
 
-	void RemoveTask (CTask *pTask);
 	unsigned GetNextTask (void);		// returns index into m_pTask or MAX_TASKS if no task was found
 
 private:

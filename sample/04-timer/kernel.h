@@ -54,15 +54,15 @@ public:
 private:
 	// do not change this order
 	CMemorySystem		m_Memory;
-	CActLED			m_ActLED;
+	CActLED			    m_ActLED;
 	CKernelOptions		m_Options;
 	CDeviceNameService	m_DeviceNameService;
 	CScreenDevice		m_Screen;
 	CSerialDevice		m_Serial;
 	CExceptionHandler	m_ExceptionHandler;
 	CInterruptSystem	m_Interrupt;
-	CTimer			m_Timer;
-	CLogger			m_Logger;
+	CTimer			    m_Timer;
+	CLogger			    m_Logger;
 };
 
 #endif

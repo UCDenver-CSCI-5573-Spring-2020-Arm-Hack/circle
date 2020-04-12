@@ -47,12 +47,12 @@ boolean CKernel::Initialize (void)
 		bOK = m_Screen.Initialize ();
 	}
 
-	if (bOK)
+	/*if (bOK)
 	{
 		bOK = m_Serial.Initialize (115200);
-	}
+	}*/
 
-	if (bOK)
+	/*if (bOK)
 	{
 		CDevice *pTarget = m_DeviceNameService.GetDevice (m_Options.GetLogDevice (), FALSE);
 		if (pTarget == 0)
@@ -60,8 +60,8 @@ boolean CKernel::Initialize (void)
 			pTarget = &m_Screen;
 		}
 
-		bOK = m_Logger.Initialize (pTarget);
-	}
+		//bOK = m_Logger.Initialize (pTarget);
+	}*/
 
 	if (bOK)
 	{
@@ -83,25 +83,17 @@ boolean CKernel::Initialize (void)
 
 TShutdownMode CKernel::Run (void)
 {
-	m_Logger.Write (FromKernel, LogNotice, "Compile time: " __DATE__ " " __TIME__);
+    // Show contents of root directory
+    TDirentry Direntry;
+    TFindCurrentEntry CurrentEntry;
 
 	// Mount file system
 	CDevice *pPartition = m_DeviceNameService.GetDevice (PARTITION, TRUE);
-	if (pPartition == 0)
-	{
-		m_Logger.Write (FromKernel, LogPanic, "Partition not found: %s", PARTITION);
-	}
+	m_FileSystem.Mount (pPartition)
 
-	if (!m_FileSystem.Mount (pPartition))
-	{
-		m_Logger.Write (FromKernel, LogPanic, "Cannot mount partition: %s", PARTITION);
-	}
-
-	// Show contents of root directory
-	TDirentry Direntry;
-	TFindCurrentEntry CurrentEntry;
 	unsigned nEntry = m_FileSystem.RootFindFirst (&Direntry, &CurrentEntry);
-	for (unsigned i = 0; nEntry != 0; i++)
+
+	for (unsigned i = 0; nEntry != 0; ++i)
 	{
 		if (!(Direntry.nAttributes & FS_ATTRIB_SYSTEM))
 		{
@@ -110,14 +102,13 @@ TShutdownMode CKernel::Run (void)
 
 			m_Screen.Write ((const char *) FileName, FileName.GetLength ());
 
-			if (i % 5 == 4)
-			{
-				m_Screen.Write ("\n", 1);
-			}
+			if (i % 5 == 4) m_Screen.Write ("\n", 1);
+
 		}
 
 		nEntry = m_FileSystem.RootFindNext (&Direntry, &CurrentEntry);
 	}
+
 	m_Screen.Write ("\n", 1);
 
 	// Create file and write to it
@@ -132,7 +123,7 @@ TShutdownMode CKernel::Run (void)
 		CString Msg;
 		Msg.Format ("Hello File! (Line %u)\n", nLine);
 
-		if (m_FileSystem.FileWrite (hFile, (const char *) Msg, Msg.GetLength ()) != Msg.GetLength ())
+		m_FileSystem.FileWrite (hFile, (const char *) Msg, Msg.GetLength ()) != Msg.GetLength ())
 		{
 			m_Logger.Write (FromKernel, LogError, "Write error");
 			break;

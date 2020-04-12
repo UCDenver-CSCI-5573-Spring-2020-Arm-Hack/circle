@@ -43,8 +43,8 @@ struct TTaskRegisters
 	u32	r10;
 	u32	r11;
 	u32	r12;
-	u32	sp;
-	u32	lr;
+	u32	sp; //stack pointer
+	u32	lr; //link Register
 	u64	d[16];
 }
 PACKED;

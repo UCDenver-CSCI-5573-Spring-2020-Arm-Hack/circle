@@ -39,6 +39,7 @@ class CScheduler;
 class CTask
 {
 public:
+    /**Default stack size is 0 **/
 	CTask (unsigned nStackSize = TASK_STACK_SIZE);		// nStackSize = 0 for main task
 	virtual ~CTask (void);
 
@@ -50,8 +51,11 @@ public:
 	void SetUserData (void *pData);
 	void *GetUserData (void);
 
+protected:
+    TTaskState GetState (void) const	{ return m_State; }
+
 private:
-	TTaskState GetState (void) const	{ return m_State; }
+
 	void SetState (TTaskState State)	{ m_State = State; }
 
 	unsigned GetWakeTicks (void) const	{ return m_nWakeTicks; }

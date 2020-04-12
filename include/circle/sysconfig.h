@@ -36,7 +36,7 @@
 
 #ifndef KERNEL_MAX_SIZE
 #define KERNEL_MAX_SIZE		(2 * MEGABYTE)
-#endif
+#endif //KERNEL_MAX_SIZE
 
 // HEAP_DEFAULT_NEW defines the default heap to be used for the "new"
 // operator, if a memory type is not explicitly specified. Possible
@@ -50,7 +50,7 @@
 
 #ifndef HEAP_DEFAULT_NEW
 #define HEAP_DEFAULT_NEW	HEAP_LOW
-#endif
+#endif //HEAP_DEFAULT_NEW
 
 // HEAP_DEFAULT_MALLOC defines the heap to be used for malloc() and
 // calloc() calls. See the description of HEAP_DEFAULT_NEW for details!
@@ -60,7 +60,7 @@
 
 #ifndef HEAP_DEFAULT_MALLOC
 #define HEAP_DEFAULT_MALLOC	HEAP_LOW
-#endif
+#endif //HEAP_DEFAULT_MALLOC
 
 ///////////////////////////////////////////////////////////////////////
 //
@@ -83,7 +83,7 @@
 
 #ifndef NO_GPU_L2_CACHE_ENABLED
 #define GPU_L2_CACHE_ENABLED
-#endif
+#endif //NO_GPU_L2_CACHE_ENABLED
 
 // USE_PWM_AUDIO_ON_ZERO can be defined to use GPIO12/13 for PWM audio
 // output on RPi Zero (W). Some external circuit is needed to use this.
@@ -92,7 +92,7 @@
 
 //#define USE_PWM_AUDIO_ON_ZERO
 
-#endif
+#endif // RASPPI == 1
 
 ///////////////////////////////////////////////////////////////////////
 //
@@ -118,7 +118,7 @@
 
 //#define ARM_ALLOW_MULTI_CORE
 
-#endif
+#endif //USE_RPI_STUB_AT
 
 // USE_PHYSICAL_COUNTER enables the use of the CPU internal physical
 // counter, which is only available on the Raspberry Pi 2, 3 and 4. Reading
@@ -130,9 +130,9 @@
 
 #ifndef NO_PHYSICAL_COUNTER
 #define USE_PHYSICAL_COUNTER
-#endif
+#endif //NO_PHYSICAL_COUNTER
 
-#endif
+#endif //RASPPI >= 2
 
 ///////////////////////////////////////////////////////////////////////
 //
@@ -145,7 +145,7 @@
 // by disabling some features (e.g. USB low-/full-speed device support).
 // See doc/realtime.txt for details!
 
-//#define REALTIME
+#define REALTIME
 
 #ifndef REALTIME
 
@@ -189,7 +189,7 @@
 // MAX_TASKS is the maximum number of tasks in the system.
 
 #ifndef MAX_TASKS
-#define MAX_TASKS		20
+#define MAX_TASKS		150
 #endif
 
 // TASK_STACK_SIZE is the stack size for each task.
@@ -210,8 +210,8 @@
 
 #ifndef DEFAULT_KEYMAP
 
-#define DEFAULT_KEYMAP		"DE"
-//#define DEFAULT_KEYMAP		"ES"
+//#define DEFAULT_KEYMAP		"DE"
+#define DEFAULT_KEYMAP		"ES"
 //#define DEFAULT_KEYMAP		"FR"
 //#define DEFAULT_KEYMAP		"IT"
 //#define DEFAULT_KEYMAP		"UK"

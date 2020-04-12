@@ -31,7 +31,7 @@
 #endif
 #define ARM_IO_END		(ARM_IO_BASE + 0xFFFFFF)
 
-#define GPU_IO_BASE		0x7E000000
+#define GPU_IO_BASE		0x7E000000 //GPU Timer is actual timer don't use ARM
 
 #define GPU_CACHED_BASE		0x40000000
 #define GPU_UNCACHED_BASE	0xC0000000

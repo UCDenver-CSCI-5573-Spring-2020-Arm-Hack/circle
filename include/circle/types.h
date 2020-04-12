@@ -22,42 +22,42 @@
 
 #include <assert.h>
 
-typedef unsigned char		u8;
-typedef unsigned short		u16;
-typedef unsigned int		u32;
+typedef unsigned char        u8;
+typedef unsigned short       u16;
+typedef unsigned int         u32;
 
-typedef signed char		s8;
-typedef signed short		s16;
-typedef signed int		s32;
+typedef signed char          s8;
+typedef signed short         s16;
+typedef signed int		     s32;
 
 #if AARCH == 32
-typedef unsigned long long	u64;
-typedef signed long long	s64;
+typedef unsigned long long	 u64;
+typedef signed long long	 s64;
 
-typedef int			intptr;
-typedef unsigned int		uintptr;
+typedef int			         intptr;
+typedef unsigned int		 uintptr;
 
-typedef unsigned int		size_t;
-typedef int			ssize_t;
+typedef unsigned int		 size_t;
+typedef int			         ssize_t;
 #else
-typedef unsigned long		u64;
-typedef signed long		s64;
+typedef unsigned long		 u64;
+typedef signed long		     s64;
 
-typedef long			intptr;
-typedef unsigned long		uintptr;
+typedef long                 intptr;
+typedef unsigned long        uintptr;
 
-typedef unsigned long		size_t;
-typedef long			ssize_t;
+typedef unsigned long        size_t;
+typedef long                 ssize_t;
 #endif
 
 #ifdef __cplusplus
-typedef bool		boolean;
-#define FALSE		false
-#define TRUE		true
+typedef bool                 boolean;
+#define FALSE                false
+#define TRUE                 true
 #else
-typedef char		boolean;
-#define FALSE		0
-#define TRUE		1
+typedef char                 boolean;
+#define FALSE                0
+#define TRUE                 1
 #endif
 ASSERT_STATIC (sizeof (boolean) == 1);
 
