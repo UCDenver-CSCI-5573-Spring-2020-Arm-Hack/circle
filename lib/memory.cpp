@@ -76,7 +76,7 @@ CMemorySystem::CMemorySystem (boolean bEnableMMU)
 	}
 
 	assert (TagMemory.nBaseAddress == 0);
-	m_nMemSize = TagMemory.nSize;
+	m_nMemSize = ARM_MEM_SIZE;//TagMemory.nSize;
 #endif
 
 	size_t nBlockReserve = m_nMemSize - MEM_HEAP_START - PAGE_RESERVE;
